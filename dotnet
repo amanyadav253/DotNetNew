@@ -1,0 +1,61 @@
+class Program
+    {
+        public string[] a = new string[5];
+        public int i;
+        public void Input()
+        {
+            for(i=0; i<a.Length; i++)
+            {
+                Console.WriteLine("Enter Value"+(+i+1));
+                a[i]=Console.ReadLine();
+            }
+            
+        }
+        public void ShowInput()
+        {
+            /*for (i=0; i<a.Length; i++)
+            {
+                Console.WriteLine(a[i]);
+            }*/
+            foreach (var a1 in a) 
+            {
+                Console.WriteLine(a1);
+            }
+        }
+        public void Last3Values()
+        {
+            Console.WriteLine(a[a.Length-1]);
+            Console.WriteLine(a[a.Length-2]);
+            Console.WriteLine(a[a.Length-3]);
+        }
+        public void Show2ndVal()
+        {
+            Console.WriteLine(a[1]);
+        }
+        public void ascendingOrderSort()
+        {
+
+        }
+        public void Top2()
+        {
+
+        }
+        public void VowelOnly()
+        {
+
+        }
+        public void duplicate()
+        {
+
+        }
+
+        static void Main(string[] args)
+        {
+            Program p=new Program();
+            p.Input();
+            //p.ShowInput();
+            //p.Last3Values();
+            //p.Show2ndVal();
+            Console.ReadKey();
+        }
+    }
