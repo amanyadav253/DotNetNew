@@ -1,32 +1,40 @@
 class Program
     {
-        public string[] a = new string[5];
-        public int i;
+        public string[] a = new string[10];
+        //public int i;
         public void Input()
         {
-            for(i=0; i<a.Length; i++)
+            for (int i = 0; i < a.Length; i++)
             {
-                Console.WriteLine("Enter Value"+(+i+1));
-                a[i]=Console.ReadLine();
+                Console.WriteLine("Enter Value" + (+i + 1));
+                a[i] = Console.ReadLine();
             }
-            
+
         }
         public void ShowInput()
         {
-            /*for (i=0; i<a.Length; i++)
+            /*for (int i=0; i<a.Length; i++)
             {
                 Console.WriteLine(a[i]);
             }*/
-            foreach (var a1 in a) 
+            foreach (var a1 in a)
             {
                 Console.WriteLine(a1);
             }
         }
+        public void Reverse()
+        {
+            for (int i = a.Length-1; i >=0; i--)
+            {
+                Console.WriteLine(a[i]);
+            }
+        }
         public void Last3Values()
         {
-            Console.WriteLine(a[a.Length-1]);
-            Console.WriteLine(a[a.Length-2]);
-            Console.WriteLine(a[a.Length-3]);
+            for (int i = a.Length-3; i <= a.Length-1; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
         }
         public void Show2ndVal()
         {
@@ -38,7 +46,10 @@ class Program
         }
         public void Top2()
         {
-
+            for(int i = 0; i < 2; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
         }
         public void VowelOnly()
         {
@@ -46,16 +57,49 @@ class Program
         }
         public void duplicate()
         {
-
+            bool ifPresent = false;
+            List<string> temp = new List<string>();
+            
+            for(int i = 0; i < a.Length; i++)
+            {
+                for(int j = i+1; j < a.Length ; j++)
+                {
+                    if (a[i] == a[j])
+                    {
+                        if (temp.Contains(a[i]))
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            temp.Add(a[i]);
+                            ifPresent = true;
+                        }
+                    }
+                }
+                
+            }
+            if(ifPresent == true)
+            {
+                //Console.WriteLine(temp[0]);
+                for (int i = 0; i < temp.Count - 1; i++)
+                {
+                    Console.WriteLine(temp[i]);
+                }
+                Console.WriteLine(temp[temp.Count-1]);
+            }
         }
 
         static void Main(string[] args)
         {
-            Program p=new Program();
+            Program p = new Program();
             p.Input();
             //p.ShowInput();
-            //p.Last3Values();
+            //p.Reverse();
+            p.Last3Values();
             //p.Show2ndVal();
+            //p.duplicate();
+            //p.Top2();
             Console.ReadKey();
         }
     }
