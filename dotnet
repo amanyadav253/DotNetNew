@@ -1,105 +1,176 @@
 class Program
     {
-        public string[] a = new string[10];
+        public static int len;
+        public string[] arr = new string[len];
         //public int i;
         public void Input()
         {
-            for (int i = 0; i < a.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 Console.WriteLine("Enter Value" + (+i + 1));
-                a[i] = Console.ReadLine();
+                arr[i] = Console.ReadLine();
             }
 
         }
         public void ShowInput()
         {
-            /*for (int i=0; i<a.Length; i++)
+            /*for (int i=0; i<arr.Length; i++)
             {
-                Console.WriteLine(a[i]);
+                Console.WriteLine(arr[i]);
             }*/
-            foreach (var a1 in a)
+            foreach (var arr1 in arr)
             {
-                Console.WriteLine(a1);
+                Console.WriteLine(arr1);
             }
         }
         public void Reverse()
         {
-            for (int i = a.Length-1; i >=0; i--)
+            for (int i = arr.Length-1; i >=0; i--)
             {
-                Console.WriteLine(a[i]);
+                Console.WriteLine(arr[i]);
             }
         }
         public void Last3Values()
         {
-            for (int i = a.Length-3; i <= a.Length-1; i++)
+            for (int i = arr.Length-3; i <= arr.Length-1; i++)
             {
-                Console.WriteLine(a[i]);
+                Console.WriteLine(arr[i]);
             }
         }
         public void Show2ndVal()
         {
-            Console.WriteLine(a[1]);
+            Console.WriteLine(arr[1]);
         }
         public void ascendingOrderSort()
         {
-
+            string temp;
+            for(int i=0; i< arr.Length; i++)
+            {
+                for(int j=i+1; j<arr.Length; j++)
+                {
+                    if (arr[i].CompareTo(arr[j])>0)
+                    {
+                        temp=arr[i];
+                        arr[i]=arr[j];
+                        arr[j]=temp;
+                    }
+                }
+            }
+            for(int k=0; k<arr.Length; k++)
+            {
+                Console.WriteLine(arr[k]);
+            }
         }
         public void Top2()
         {
-            for(int i = 0; i < 2; i++)
+            for (int i = 0; i < 2; i++)
             {
-                Console.WriteLine(a[i]);
+                Console.WriteLine(arr[i]);
             }
         }
         public void VowelOnly()
         {
-
-        }
-        public void duplicate()
-        {
-            bool ifPresent = false;
-            List<string> temp = new List<string>();
-            
-            for(int i = 0; i < a.Length; i++)
+            foreach(var charArr in arr)
             {
-                for(int j = i+1; j < a.Length ; j++)
+                char[] char1=charArr.ToCharArray();
+
+                for(int i = 0; i<char1.Length; i++)
                 {
-                    if (a[i] == a[j])
+                    if(char1[i] == 'a'|| char1[i]=='e'|| char1[i]=='i'||char1[i]=='o'||char1[i]=='u')
                     {
-                        if (temp.Contains(a[i]))
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            temp.Add(a[i]);
-                            ifPresent = true;
-                        }
+                        Console.WriteLine(charArr);
+                        break;
                     }
                 }
-                
             }
-            if(ifPresent == true)
+        }
+        public void dup()
+        {
+            int count = 1;
+            for(int i = 0; i<arr.Length; i++)
             {
-                //Console.WriteLine(temp[0]);
-                for (int i = 0; i < temp.Count - 1; i++)
+                for(int j=i+1; j<arr.Length; j++)
                 {
-                    Console.WriteLine(temp[i]);
+                    if(arr[i]== arr[j])
+                    {
+                        //Console.WriteLine(arr[i]);
+                        if(count==1 && arr[j]!="")
+                        {
+                            Console.WriteLine(arr[i]);
+                        }
+                        arr[j]="";
+                        count++;
+                    }
                 }
-                Console.WriteLine(temp[temp.Count-1]);
+                count=1;
             }
         }
 
         static void Main(string[] args)
         {
+            do
+            {
+                Console.WriteLine("Enter No of Inputs to be taken *Should not be more than 15*");
+                len=Convert.ToInt32(Console.ReadLine());
+                if (len>15)
+                {
+                    Console.WriteLine("Must be less than or equal to 15");
+                }
+            } while (len>15);
             Program p = new Program();
             p.Input();
-            //p.ShowInput();
-            //p.Reverse();
-            p.Last3Values();
-            //p.Show2ndVal();
-            //p.duplicate();
-            //p.Top2();
+            int check;
+            do
+            {
+                Console.WriteLine("Select an Option");
+                Console.WriteLine("1 <== Show Input");
+                Console.WriteLine("2 <== Reverse Array");
+                Console.WriteLine("3 <== Show Last 3 Values of Array");
+                Console.WriteLine("4 <== Show 2nd Value of Array");
+                Console.WriteLine("5 <== Sort Array in Ascending Order");
+                Console.WriteLine("6 <== Show Top2 Values of Array");
+                Console.WriteLine("7 <== Show Values with Vowels");
+                Console.WriteLine("8 <== Show Duplicate values if exist");
+                Console.WriteLine("9 <== Exit");
+                int opt;
+                opt=Convert.ToInt32(Console.ReadLine());
+                check=opt;
+                switch (opt)
+                {
+                    case 1:
+                        p.ShowInput();
+                        break;
+                    case 2:
+                        p.Reverse();
+                        break;
+                    case 3:
+                        p.Last3Values();
+                        break;
+                    case 4:
+                        p.Show2ndVal();
+                        break;
+                    case 5:
+                        p.ascendingOrderSort();
+                        break;
+                    case 6:
+                        p.Top2();
+                        break;
+                    case 7:
+                        p.VowelOnly();
+                        break;
+                    case 8:
+                        p.dup();
+                        break;
+                    case 9:
+                        Console.WriteLine("Press Any Key to Exit");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Input");
+                        break;
+
+                }
+            } while (check!=9);
+            
             Console.ReadKey();
         }
     }
